@@ -22,6 +22,7 @@ export const getStyleSheet = (styles: object) =>
 export const useBreakpoints = () => {
   const [breakpoint, setBreakpoint] = useState(getCurrentBreakpoint());
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useLayoutEffect(() => {
     const updateSize = () => {
       const currBreakpoint = getCurrentBreakpoint();
