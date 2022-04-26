@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { View } from 'react-native';
 
-import { getStyleSheet, useBreakpoints } from '../util/stylesheet.helper';
+import { getStyleSheet, useBreakpoints } from './stylesheet.helpers';
 
 interface IStack {
   children: ReactNode;
@@ -14,24 +14,22 @@ interface IStack {
 }
 
 const Stack: React.FC<IStack> = ({
-                                   children,
-                                   direction,
-                                   alignItems,
-                                   justifyContent,
-                                   divider,
-                                   spacing = 0,
-                                   sx
-                                 }) => {
+  children,
+  direction,
+  alignItems,
+  justifyContent,
+  divider,
+  spacing = 0,
+  sx
+}) => {
   useBreakpoints();
 
   const styles: AnyObject = {
     root: {
       display: 'flex',
       flexDirection: direction,
-
     },
-    child: {
-    }
+    child: {}
   };
 
   if (direction === 'column-reverse' || direction === 'column') {

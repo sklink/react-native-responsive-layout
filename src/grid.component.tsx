@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { getNextBreakpoint, getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helper';
+import { getNextBreakpoint, getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
 
 interface IGrid {
   children: ReactNode;

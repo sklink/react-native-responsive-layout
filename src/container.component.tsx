@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 
-import { getStyleSheet } from '../util/stylesheet.helper';
+import { getStyleSheet } from './stylesheet.helpers';
 
 interface IContainer {
   children: ReactNode;
@@ -11,11 +11,11 @@ interface IContainer {
 }
 
 const Container: React.FC<IContainer> = ({
-                                           children,
-                                           disableGutters = false,
-                                           maxWidth = 'lg',
-                                           sx
-                                         }) => {
+  children,
+  disableGutters = false,
+  maxWidth = 'lg',
+  sx
+}) => {
   const styles: AnyObject = {
     root: {
       width: '100%',
