@@ -45,7 +45,7 @@ const Stack: React.FC<IStack> = ({
     styles['child:last-child'] = { paddingRight: 0 };
   }
 
-  if (direction) styles.root.direction = direction;
+  if (direction) styles.root.flexDirection = direction;
   if (alignItems) styles.root.alignItems = alignItems;
   if (justifyContent) styles.root.justifyContent = justifyContent;
 
