@@ -1,5 +1,8 @@
 import React, { useLayoutEffect, useState } from 'react';
+import { useWindowDimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+
+import { AnyObject } from './types.d';
 
 export const SIZE_BREAKPOINTS: AnyObject = {
   xl: 1536,
@@ -20,28 +23,12 @@ export const getStyleSheet = (styles: object) =>
   EStyleSheet.create(styles);
 
 export function useBreakpoints() {
-  const [breakpoint, setBreakpoint] = useState(getCurrentBreakpoint());
+  const width = useWindowDimensions().width;
 
-  useLayoutEffect(() => {
-    const updateSize = () => {
-      const currBreakpoint = getCurrentBreakpoint();
-
-      if (currBreakpoint !== breakpoint) {
-        setBreakpoint(currBreakpoint);
-      }
-    };
-
-    window.addEventListener('resize', updateSize);
-    updateSize();
-
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-
-  return breakpoint;
+  return getCurrentBreakpoint(width);
 };
 
-export const getCurrentBreakpoint = () => {
-  const currWidth = window.innerWidth;
+export const getCurrentBreakpoint = (currWidth: number) => {
   let currSize = 'xs';
   let currBreakpoint = SIZE_BREAKPOINTS[currSize];
   let prevBreakpoint = currBreakpoint;

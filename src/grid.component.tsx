@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { getNextBreakpoint, getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
+import { AnyObject } from './types.d';
 
 interface IGrid {
   children: ReactNode;

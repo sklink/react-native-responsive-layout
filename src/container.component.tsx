@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 
 import { getStyleSheet } from './stylesheet.helpers';
+import { AnyObject } from './types.d';
 
 interface IContainer {
   children: ReactNode;

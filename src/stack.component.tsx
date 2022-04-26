@@ -2,6 +2,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import { View } from 'react-native';
 
 import { getStyleSheet, useBreakpoints } from './stylesheet.helpers';
+import { AnyObject } from './types.d';
 
 interface IStack {
   children: ReactNode;

@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-    "incremental": true,
-    "target": "esnext",
-    "module": "commonjs",
     "declaration": true,
-    "outDir": "lib",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "jsx": "react-native"
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "esnext",
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "skipLibCheck": true
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": [
-    "node_modules",
-    "tests"
+    "node_modules"
   ]
 }
