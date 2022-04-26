@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 
-import { getStyleSheet } from './stylesheet.helpers';
+import { getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
 
 interface IContainer {
@@ -11,12 +11,23 @@ interface IContainer {
   sx?: object;
 }
 
+/**
+ * The container centers your content horizontally. It's the most basic layout element.
+ *
+ * Modeled after Material UI Container:
+ * https://mui.com/material-ui/react-container/#main-content
+ */
 const Container: React.FC<IContainer> = ({
   children,
   disableGutters = false,
   maxWidth = 'lg',
   sx
 }) => {
+  // Re-render when breakpoint changes...
+  // This is required because React Native does not support cascading styles
+  // (i.e. multiple media queries)
+  useBreakpoints();
+
   const styles: AnyObject = {
     root: {
       width: '100%',
@@ -51,7 +62,7 @@ const Container: React.FC<IContainer> = ({
   if (Number.isInteger(maxWidth)) {
     styles.root.maxWidth = maxWidth;
   } else if (maxWidth) {
-    styles.root.maxWidth = `$${maxWidth}`;
+    styles.root.maxWidth = SIZE_BREAKPOINTS[maxWidth];
   }
 
   const stylesheet = getStyleSheet(styles);

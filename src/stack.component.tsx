@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 import { View } from 'react-native';
 
-import { getStyleSheet, useBreakpoints } from './stylesheet.helpers';
+import { getStyleSheet } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
 
 interface IStack {
@@ -14,6 +14,13 @@ interface IStack {
   sx?: AnyObject;
 }
 
+/**
+ * The Stack component manages layout of immediate children along the vertical or horizontal axis
+ * with optional spacing and/or dividers between each child.
+ *
+ * Modeled after Material UI Stack:
+ * https://mui.com/material-ui/react-stack/
+ */
 const Stack: React.FC<IStack> = ({
   children,
   direction,
@@ -23,8 +30,6 @@ const Stack: React.FC<IStack> = ({
   spacing = 0,
   sx
 }) => {
-  useBreakpoints();
-
   const styles: AnyObject = {
     root: {
       display: 'flex',
@@ -52,9 +57,13 @@ const Stack: React.FC<IStack> = ({
   const stylesheet = getStyleSheet(styles);
 
   const arrChildren: ReactNode[] = React.Children.toArray(children).filter(Boolean);
+
+  // Map the child ReactNode elements so that we can...
   const eleChildren = arrChildren.reduce((result: ReactNode[], child, index) => {
+    // wrap the child elements so that we can apply spacing, and...
     result.push(<View key={`child-${index}`} style={stylesheet.child}>{child}</View>);
 
+    // optionally include a divider between the elements
     if (divider && index < arrChildren.length - 1) {
       result.push(React.cloneElement(divider, { key: `separator-${index}` }));
     }

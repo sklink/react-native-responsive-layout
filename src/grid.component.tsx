@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import { getNextBreakpoint, getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
@@ -20,27 +20,31 @@ interface IGrid {
   sx?: AnyObject;
 }
 
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: '#ddd'
-  }
-})
-
+/**
+ * This responsive layout grid adapts to screen size and orientation,
+ * ensuring consistency across layouts.
+ *
+ * This is modeled after the Material UI Grid:
+ * https://mui.com/material-ui/react-grid/#main-content
+ */
 const Grid: React.FC<IGrid> = ({
-                                 children,
-                                 columns = 12,
-                                 container = false,
-                                 direction = 'row',
-                                 item = false,
-                                 p = 0,
-                                 wrap = 'wrap',
-                                 xl = false,
-                                 lg = false,
-                                 md = false,
-                                 sm = false,
-                                 xs = false,
-                                 sx = {}
-                               }) => {
+  children,
+  columns = 12,
+  container = false,
+  direction = 'row',
+  item = false,
+  p = 0,
+  wrap = 'wrap',
+  xl = false,
+  lg = false,
+  md = false,
+  sm = false,
+  xs = false,
+  sx = {}
+}) => {
+  // Re-render when breakpoint changes...
+  // This is required because React Native does not support cascading styles
+  // (i.e. multiple media queries)
   useBreakpoints();
 
   const styles: AnyObject = {
@@ -67,9 +71,11 @@ const Grid: React.FC<IGrid> = ({
     const style: AnyObject = {};
     const currSize = sizes[sizeKey];
 
+    // Fill the space if the size is `true`...
     if (currSize === true) {
       style.root = { flexGrow: 1 };
     } else if (Number.isInteger(currSize)) {
+      // Otherwise, calculate the width based on column restrictions
       const maxWidth = `${currSize / columns * 100}%`;
 
       style.root = {
@@ -84,6 +90,8 @@ const Grid: React.FC<IGrid> = ({
       const minWidth = SIZE_BREAKPOINTS[sizeKey];
       const maxWidth = nextBreakpoint && nextBreakpoint - 1;
 
+      // Create the media query for this size,
+      // using maxWidth if there is a larger breakpoint configured
       let mediaQuery = `@media (min-width: ${minWidth})`;
       if (maxWidth) mediaQuery += ` and (max-width: ${maxWidth})`;
 
