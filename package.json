@@ -1,0 +1,25 @@
+{
+  "name": "@sklink/responsive-layout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "keywords": [
+    "react native",
+    "responsive",
+    "grid",
+    "container",
+    "stack"
+  ],
+  "author": "Matt Doak",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-native": "^0.68.1",
+    "react-native-extended-stylesheet": "^0.12.0"
+  }
+}
