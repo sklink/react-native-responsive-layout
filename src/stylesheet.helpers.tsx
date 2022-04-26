@@ -19,11 +19,9 @@ export const SIZE_UP: AnyObject = {
 export const getStyleSheet = (styles: object) =>
   EStyleSheet.create(styles);
 
-export const useBreakpoints = () => {
-  // @ts-ignore
+export function useBreakpoints() {
   const [breakpoint, setBreakpoint] = useState(getCurrentBreakpoint());
 
-  // @ts-ignore
   useLayoutEffect(() => {
     const updateSize = () => {
       const currBreakpoint = getCurrentBreakpoint();
