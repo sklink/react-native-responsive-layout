@@ -1,7 +1,7 @@
 {
   "name": "@sklink/react-native-responsive-layout",
-  "version": "1.0.15",
-  "main": "index.js",
+  "version": "1.0.16",
+  "main": "lib/index.js",
   "scripts": {
     "build": "npx tsc"
   },
