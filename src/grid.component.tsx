@@ -66,7 +66,7 @@ const Grid: React.FC<IGrid> = ({
     }
   };
 
-  const sizes: AnyObject = { xl, lg, md, sm, xs };
+  const sizes: AnyObject = { xs, sm, md, lg, xl };
   const sizeKeys = Object.keys(sizes);
 
   sizeKeys.forEach(sizeKey => {
@@ -101,12 +101,16 @@ const Grid: React.FC<IGrid> = ({
     }
   });
 
+  console.log('=======', container)
+  console.log(styles);
+
   const stylesheet = getStyleSheet(styles);
   const base = container ? stylesheet.container : stylesheet.item;
   let renderChildren: ReactElement | ReactElement[] = children;
 
   if (container) {
     renderChildren = React.Children.map(children, (child: ReactElement) => {
+      console.log(stylesheet._child);
       return React.cloneElement({ ...child }, {
         children: (
           <View style={stylesheet.child}>{child.props.children}</View>

@@ -69,8 +69,8 @@ export const getNextBreakpoint = (sizeKey: string, sizes?: AnyObject) => {
   let result;
 
   while (nextSize && !result) {
-    if (nextSize && sizeSet[nextSize]) {
-      result = sizeSet[nextSize];
+    if (nextSize && Number.isInteger(sizeSet[nextSize])) {
+      result = SIZE_BREAKPOINTS[nextSize];
     }
 
     currSize = nextSize;
