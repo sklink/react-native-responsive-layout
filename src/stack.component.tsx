@@ -23,7 +23,7 @@ interface IStack {
  */
 const Stack: React.FC<IStack> = ({
   children,
-  direction = 'column',
+  direction,
   alignItems,
   justifyContent,
   divider,
@@ -35,22 +35,22 @@ const Stack: React.FC<IStack> = ({
       display: 'flex',
       flexDirection: direction,
     },
-    child: {
-      paddingRight: 10
-    }
+    child: {}
   };
 
-  if (direction === 'column-reverse' || direction === 'column') {
-    styles.child.paddingBottom = spacing / 2;
-    styles.child.paddingTop = spacing / 2;
-    styles['child:first-child'] = { paddingTop: 0 };
-    styles['child:last-child'] = { paddingBottom: 0 };
-  } else {
+  if (direction === 'row-reverse' || direction === 'row') {
     styles.child.paddingRight = spacing / 2;
     styles.child.paddingLeft = spacing / 2;
     styles['child:first-child'] = { paddingLeft: 0 };
     styles['child:last-child'] = { paddingRight: 0 };
+  } else {
+    styles.child.paddingBottom = spacing / 2;
+    styles.child.paddingTop = spacing / 2;
+    styles['child:first-child'] = { paddingTop: 0 };
+    styles['child:last-child'] = { paddingBottom: 0 };
   }
+
+  console.log(direction, styles);
 
   if (direction) styles.root.flexDirection = direction;
   if (alignItems) styles.root.alignItems = alignItems;
