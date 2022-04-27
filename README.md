@@ -1,13 +1,13 @@
-# React Native Responsive Layout
+# React Native / Web Responsive Layout
 
 When developing a project that considers both React Native and React Web as first-class 
 experiences, it's helpful to have tools that react different sizes of windows, both on load and 
 when resized.
 
-This package aims to replicate tools that the Material UI library has provided, while working 
+This package aims to replicate tools that the [Material UI](https://mui.com) library has provided, while working 
 for both React Native and React Web.
 
-These Material UI components have been replicated here:
+These components have been replicated here:
 
 [Container](https://mui.com/material-ui/react-container/#main-content); a wrapper that centers 
 your content horizontally. It's the most basic layout element.

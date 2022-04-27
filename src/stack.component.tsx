@@ -35,7 +35,9 @@ const Stack: React.FC<IStack> = ({
       display: 'flex',
       flexDirection: direction,
     },
-    child: {}
+    child: {
+      paddingRight: 10
+    }
   };
 
   if (direction === 'column-reverse' || direction === 'column') {
@@ -55,6 +57,7 @@ const Stack: React.FC<IStack> = ({
   if (justifyContent) styles.root.justifyContent = justifyContent;
 
   const stylesheet = getStyleSheet(styles);
+  console.log(stylesheet.child, stylesheet._child, styles);
 
   const arrChildren: ReactNode[] = React.Children.toArray(children).filter(Boolean);
 
