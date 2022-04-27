@@ -1,16 +1,16 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { View } from 'react-native';
 
 import { getNextBreakpoint, getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
 
 interface IGrid {
-  children: ReactNode;
+  children: ReactElement;
   columns?: number;
   container?: boolean;
   direction?: string;
   item?: boolean;
-  p?: number;
+  spacing?: number;
   wrap?: string;
   xl?: 'auto' | number | boolean;
   lg?: 'auto' | number | boolean;
@@ -33,7 +33,7 @@ const Grid: React.FC<IGrid> = ({
   container = false,
   direction = 'row',
   item = false,
-  p = 0,
+  spacing = 0,
   wrap = 'wrap',
   xl = false,
   lg = false,
@@ -54,13 +54,15 @@ const Grid: React.FC<IGrid> = ({
       display: 'flex',
       flexWrap: 'wrap',
       flexDirection: 'row',
-      paddingBottom: p || 0,
-      paddingRight: p || 0
+      paddingBottom: spacing || 0,
+      paddingRight: spacing || 0
     },
     item: {
-      margin: 0,
-      paddingLeft: p || 0,
-      paddingTop: p || 0
+      margin: 0
+    },
+    child: {
+      paddingTop: spacing || 0,
+      paddingLeft: spacing || 0
     }
   };
 
@@ -101,8 +103,19 @@ const Grid: React.FC<IGrid> = ({
 
   const stylesheet = getStyleSheet(styles);
   const base = container ? stylesheet.container : stylesheet.item;
+  let renderChildren: ReactElement | ReactElement[] = children;
 
-  return <View style={[base, stylesheet.root, sx]}>{children}</View>;
+  if (container) {
+    renderChildren = React.Children.map(children, (child: ReactElement) => {
+      return React.cloneElement({ ...child }, {
+        children: (
+          <View style={stylesheet.child}>{child.props.children}</View>
+        )
+      });
+    });
+  }
+
+  return <View style={[base, stylesheet.root, sx]}>{renderChildren}</View>;
 }
 
 export default Grid;

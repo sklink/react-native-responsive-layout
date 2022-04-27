@@ -18,3 +18,5 @@ to screen size and orientation, ensuring consistency across layouts.
 [Stack](https://mui.com/material-ui/react-stack/#main-content); though not explicitly for 
 responsive layout, Stack is a simple way to manage the layout of immediate children along the 
 vertical or horizontal axis with optional spacing and/or dividers between each child.
+
+[Expo Snack app](https://snack.expo.dev/@sklinks/0dd6c7)
