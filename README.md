@@ -20,3 +20,8 @@ responsive layout, Stack is a simple way to manage the layout of immediate child
 vertical or horizontal axis with optional spacing and/or dividers between each child.
 
 [Expo Snack app](https://snack.expo.dev/@sklinks/0dd6c7)
+
+### Room for improvement
+
+* Breakpoints are hard-coded within this package. These should be exposed for configuration.
+* `spacing` accepts a multi-breakpoint configuration on MUI, where we're only accepting a single value 
