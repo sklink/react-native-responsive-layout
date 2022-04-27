@@ -23,7 +23,7 @@ interface IStack {
  */
 const Stack: React.FC<IStack> = ({
   children,
-  direction,
+  direction = 'column',
   alignItems,
   justifyContent,
   divider,
