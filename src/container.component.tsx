@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { View } from 'react-native';
+import { Animated } from 'react-native';
 
 import { getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
@@ -67,7 +67,7 @@ const Container: React.FC<IContainer> = ({
 
   const stylesheet = getStyleSheet(styles);
 
-  return <View style={stylesheet.root}>{children}</View>;
+  return <Animated.View style={stylesheet.root}>{children}</Animated.View>;
 }
 
 export default Container;

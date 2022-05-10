@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { View } from 'react-native';
+import { Animated, View } from 'react-native';
 
 import { getStyleSheet } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
@@ -50,8 +50,6 @@ const Stack: React.FC<IStack> = ({
     styles['child:last-child'] = { paddingBottom: 0 };
   }
 
-  console.log(direction, styles);
-
   if (direction) styles.root.flexDirection = direction;
   if (alignItems) styles.root.alignItems = alignItems;
   if (justifyContent) styles.root.justifyContent = justifyContent;
@@ -74,9 +72,9 @@ const Stack: React.FC<IStack> = ({
   }, []);
 
   return (
-    <View style={[styles.root, sx]}>
+    <Animated.View style={[styles.root, sx]}>
       {eleChildren}
-    </View>
+    </Animated.View>
   );
 };
 

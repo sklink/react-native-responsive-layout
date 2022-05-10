@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react';
-import { View } from 'react-native';
+import { Animated, View } from 'react-native';
 
 import { getNextBreakpoint, getStyleSheet, SIZE_BREAKPOINTS, useBreakpoints } from './stylesheet.helpers';
 import { AnyObject } from './types.d';
@@ -101,16 +101,12 @@ const Grid: React.FC<IGrid> = ({
     }
   });
 
-  console.log('=======', container)
-  console.log(styles);
-
   const stylesheet = getStyleSheet(styles);
   const base = container ? stylesheet.container : stylesheet.item;
   let renderChildren: ReactElement | ReactElement[] = children;
 
   if (container) {
     renderChildren = React.Children.map(children, (child: ReactElement) => {
-      console.log(stylesheet._child);
       return React.cloneElement({ ...child }, {
         children: (
           <View style={stylesheet.child}>{child.props.children}</View>
@@ -119,7 +115,7 @@ const Grid: React.FC<IGrid> = ({
     });
   }
 
-  return <View style={[base, stylesheet.root, sx]}>{renderChildren}</View>;
+  return <Animated.View style={[base, stylesheet.root, sx]}>{renderChildren}</Animated.View>;
 }
 
 export default Grid;
